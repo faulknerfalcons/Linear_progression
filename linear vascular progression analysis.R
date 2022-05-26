@@ -8,9 +8,10 @@
 #allows for calculation of the velocity in 2 ways
 #1. fitting a polynomial of degree 3 and calculating its derivative
 #2. fitting a stright line and extracting the slope
-#In the case of propagation of calcium waves along teh vasculature, the disposition of the measured datapoints suggests tha 
+
+#In the case of progression of calcium waves along the vasculature, the disposition of the measured datapoints suggests that 
 #a straight line is a better fit for the phenomenon.
-#Slopes of the lines are lotted in boxplots
+#Slopes of the lines are therefore plotted in boxplots
 #comaprison across series (genotypes/conditions) is achieved by wilcoxon rank sum test
 
 
@@ -93,15 +94,15 @@ setwd ("...") #set working dyrectory
 GEN='...' #set the name the data series that you will use (genotype)
 CON='...' #set another layer of information on the series if needed (eg condition)
 
-#copy data-frame with data of progression of the front of the signal over time
+#From the excel file, copy data-frame with data of progression of the front of the signal over time, for one genotype/condition across all replicates
 df <- read.table('clipboard', sep = '\t', header=TRUE, stringsAsFactors = FALSE)
 head(df,10)
 df<-data.frame(df)
 tail(df)
 
 
-##=========================================== analsysi of the velocities of progression of each replicate of this series ============================================
-##===================================== this chunk need to be re-run separately for each series of one experiment (ie if you have multiple genotypes or conditions)
+##=========================================== analysis of the velocities of progression of each replicate for this genotype/condition ============================================
+##===================================== this chunk need to be re-run separately for each genotype/condition of one experiment 
 
 rep <- unique(df$series)
 
@@ -114,7 +115,7 @@ slopes <- data.frame(genotype=character(), sample_name=numeric(), condition=char
 workbook_fits <- createWorkbook(paste(GEN, 'fits', ".xlsx"))
 
 
-#for each replicate retrieves the postion fo teh front of the wave over time 
+#for each replicate retrieves the postion fo thr front of the wave over time 
 
 for (j in rep) {
   
